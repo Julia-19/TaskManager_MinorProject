@@ -7,14 +7,10 @@ app.use(express.static('.'));
 app.use(express.json());
 
 const DATA_FILE = './data.json';
-
-// Helper function to read tasks
 const readTasks = () => JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
 
-// Helper function to write tasks
 const writeTasks = (tasks) => fs.writeFileSync(DATA_FILE, JSON.stringify(tasks));
 
-// Get all tasks
 app.get('/tasks', (req, res) => {
     res.json(readTasks());
 });
@@ -26,6 +22,17 @@ app.post('/tasks', (req, res) => {
     writeTasks(tasks);
     res.status(201).send();
 });
+
+// Update a task
+app.put('/tasks/:index', (req, res) => {
+    const tasks = readTasks();
+    console.log(`Before update: ${JSON.stringify(tasks)}`);
+    tasks[req.params.index] = req.body.task;
+    writeTasks(tasks);
+    console.log(`After update: ${JSON.stringify(tasks)}`);
+    res.status(200).send();
+});
+
 
 // Delete a task
 app.delete('/tasks/:index', (req, res) => {
