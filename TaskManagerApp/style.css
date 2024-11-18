@@ -50,7 +50,7 @@ input:focus {
 }
 
 button {
-    padding: 12px 92px;           
+    padding: 12px 52px;           
     font-size: 1.2rem;         
     color: white;       
     background-color: #006c5d;  
@@ -60,12 +60,12 @@ button {
 }
 
 button:hover {
-    background-color: #006455;
+    background-color: #006455; 
 }
 
 button:active {
     background-color: #00594c; 
-    transform: scale(0.98);   
+    transform: scale(0.98);     
 }
 ul {
     list-style: none;
